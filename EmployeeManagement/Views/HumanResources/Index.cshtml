@@ -1,0 +1,202 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p>
+    <a class="btn btn-outline-primary" onclick="department.back()">Trở Lại</a>
+    <a class="btn btn-outline-success" onclick="department.createEmployee()">Tạo Mới </a>
+</p>
+
+
+<table id="tblEmployee" class="table"></table>
+<table class="table" id="tableDepartment">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col" hidden>
+                Id
+            </th>
+            <th scope="col">
+                Department Name
+            </th>
+            <th scope="col">
+                Quantity
+            </th>
+            <th scope="col">
+                Status
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="tblData"></tbody>
+</table>
+<script id="data-template" type="x-tmpl-mustache">
+    <tr>
+        <th hidden>
+            {{Id}}
+        </th>
+        <td scope="row">
+            {{Name}}
+        </td>
+        <th>
+            {{Quantity}}
+        </th>
+        <th>
+            {{{IsActive}}}
+        </th>
+        <th>
+            <a id="edit" @*data-id="{{MaHang}}" onClick="homeController.editProduct({{MaHang}})*@><i class="fa fa-wrench px-sm-2"></i></a>
+            <a id="details" @*data-id="{{MaHang}}"*@><i class="fa fa-file-text px-sm-2"></i></a>
+            <a @*data-id="{{MaHang}}" onClick="homeController.delete({{MaHang}})*@><i class="fa fa-trash-o px-sm-2"></i></a>
+            <a id="seeEmployee" data-id="{{Id}}" onClick="department.showDataTables({{ Id }})"><i class="fa fa-eye px-sm-2"></i></a>
+
+        </th>
+    </tr>
+
+</script>
+
+<div id="editOrAdd" class="modal fade" role="dialog">
+    <div class="modal-dialog  modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                <h4 class="modal-title">Create Employee</h4>
+            </div>
+            <div class="modal-body col-lg-12">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6 " hidden>
+                            <div>
+                                <label>Id</label>
+                            </div>
+                            <div>
+                                <input id="id" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-6 ">
+                            <div>
+                                <label>Họ Tên</label>
+                            </div>
+                            <div>
+                                <input id="fullName" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div>
+                                <label>Giới Tính</label>
+                            </div>
+                            <div>
+                                <select class="custom-select mr-sm-2" id="gender">
+                                    <option value="1">Nam</option>
+                                    <option value="0">Nữ</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div>
+                                <label>Số Điện Thoại</label>
+                            </div>
+                            <div>
+                                <input id="phoneNumber" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div>
+                                <label>Ngày Sinh</label>
+                            </div>
+                            <div>
+                                <input id="datepicker"  class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div>
+                                <label>Số Chứng Minh</label>
+                            </div>
+                            <div>
+                                <input id="idNumber" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div>
+                                <label>Email</label>
+                            </div>
+                            <div>
+                                <input id="email" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div>
+                                <label>Địa Chỉ</label>
+                            </div>
+                            <div>
+                                <input id="address" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div>
+                                <label>Số Thuế</label>
+                            </div>
+                            <div>
+                                <input id="taxId" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div>
+                                <label>Bộ Phận</label>
+                            </div>
+                            <div>
+                                <select class="custom-select" id="department" name="departmentId">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div>
+                                <label>Chức Vụ</label>
+                            </div>
+                            <div>
+                                <select class="custom-select" id="position" name="positionId">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <label for="URL" class="col-sm-2 control-label">Ảnh</label>
+                            <div class="col-sm-10">
+                                <div class="row upload-section">
+                                    <div class="col-md-4">
+                                        <input id="URLUploader" type="file" data-url="/UploadHandler/FilesHandler.ashx" method="POST" enctype="multipart/form-data" />
+                                    </div>
+                                    <div class="col-md-7">
+                                        <img src="~/Content/images/loading-bar.gif" class="inline-loading" style="display:none" />
+                                    </div>
+                                </div>
+                                <image id="URLPreview" style="max-width:100px" />
+                                <input type="hidden" name="URL" id="URL" />
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" onclick="department.submit()" class="btn btn-success" data-dismiss="modal">Succsess</button>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+@section css{
+    <link href="~/lib/node-modules/datatables.net-dt/css/jquery.dataTables.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+}
+@section Scripts{
+    @*<script src="~/lib/node-modules/jquery/dist/jquery.min.js"></script>*@
+    <script src="~/lib/node-modules/datatables.net/js/jquery.dataTables.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script src="~/js/Plugin/mustache.min.js"></script>
+    <script src="~/js/HumanResources/Department.js"></script>
+}

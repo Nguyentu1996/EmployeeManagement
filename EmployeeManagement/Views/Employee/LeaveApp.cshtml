@@ -1,0 +1,223 @@
+﻿
+@{
+    ViewData["Title"] = "LeaveApp";
+}
+
+@{
+    var id = ViewBag.Id;
+}
+<h3>List Leave Applications Of Employee</h3>
+
+<p>
+    <a href="javascript:void();" class="btn btn-dark" onclick="leaveapp.showModal(@id)">Add Leave </a>
+
+</p>
+<table id="tbLeaveApp" class="table table-hover table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
+</table>
+
+
+<!-- The Modal -->
+<div class="modal" id="addEditLeaveApp">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Đơn xin phép</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body ">
+                <div class="row form-group">
+                    <div class="col-md-4">
+                        <input type="hidden" id="EmployeeId" name="EmployeeId" />
+                        <input type="hidden" id="ManagerId" name="ManagerId" />
+                        <input type="hidden" id="Email" name="Email" />
+                        <input type="hidden" id="CommentDate" name="CommentDate" />
+                        <input type="hidden" id="NumberOfAbsent" name="NumberOfAbsent" />
+                        @*<input type="hidden" id="Id" name="Id" value="0"/>*@
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label class="control-label">Employee Name: </label>
+                            <input type="text" id="FullName" name="FullName" class="form-control" readonly />
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Select leaves:</label>
+                            <select id="LeaveCode" name="LeaveCode" class="form-control">
+                                <option value="4">Paid Leave</option>
+                                <option value="5"> Unpaid Leave</option>
+                            </select>
+                            @*<input type="text" id="NumberOfAbsent" name="NumberOfAbsent" class="form-control"  />*@
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Start Date: </label>
+                            <input class="form-control" id="StartDate" name="StartDate" type="text" required data-msg-required="This field is required" />
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-th"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <div class="form-group">
+                            <label class="control-label">Department: </label>
+                            <input type="text" id="Department" name="Department" class="form-control" readonly />
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Paid Leaves: </label>
+                            <input type="text" id="PaidLeave" name="PaidLeave" class="form-control" readonly />
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">End Date: </label>
+                            <input class="form-control" id="EndDate" name="EndDate" type="text" required data-msg-required="This field is required" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <div class="form-group">
+                            <label class="control-label">Days Leave Remaining: </label>
+                            <input type="text" id="DaysLeaveRemaining" name="DaysLeaveRemaining" class="form-control" readonly />
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Unpaid Leaves: </label>
+                            <input type="text" id="UnpaidLeave" name="UnpaidLeave" class="form-control" readonly />
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Comment: </label>
+                            <input type="text" id="Comment" name="Comment" class="form-control" />
+
+                        </div>
+                        @*<div class="form-group">
+            <label class="control-label">End</label>
+            <input class="form-control" type="text" />
+        </div>*@
+                    </div>
+                </div>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <a href="javascript:void(0);" class="btn btn-success" onclick="leaveapp.save()">Save</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="modal" id="detailsModal">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Đơn xin phép</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body ">
+                <div class="row form-group">
+                    <div class="col-md-4">
+                        @*<input type="hidden" id="EmployeeId" name="EmployeeId" />
+                            <input type="hidden" id="ManagerId" name="ManagerId" />
+                            <input type="hidden" id="Email" name="Email" />
+                            <input type="hidden" id="CommentDate" name="CommentDate" />*@
+                       
+                        <div class="form-group">
+                            <label class="control-label">Status </label>
+                            <input type="text" id="Status1" name="Status1" class="form-control" readonly />
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">StartDate:</label>
+                            <input type="text" id="StartDate" name="StartDate" class="form-control" />
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-th"></span>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">EndDate: </label>
+                            <input class="form-control" id="EndDate" name="EndDate" type="text" required data-msg-required="This field is required" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <div class="form-group">
+                            <label class="control-label">DaysLeaveRemaining: </label>
+                            <input type="text" id="DaysLeaveRemaining" name="DaysLeaveRemaining" class="form-control" />
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">NumberOfAbsent: </label>
+                            <input type="text" id="NumberOfAbsent" name="NumberOfAbsent" class="form-control" readonly />
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">CommentDate: </label>
+                            <input class="form-control" id="CommentDate" name="CommentDate" type="text" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <div class="form-group">
+                            <label class="control-label">FeedbackDate: </label>
+                            <input type="text" id="FeedbackDate" name="FeedbackDate" class="form-control" readonly />
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Comment: </label>
+                            <input type="text" id="Comment" name="Comment" class="form-control" />
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Feedback: </label>
+                            <input type="text" id="Feedback" name="Feedback" class="form-control" />
+
+                        </div>
+                        @*<div class="form-group">
+                                <label class="control-label">End</label>
+                                <input class="form-control" type="text" />
+                            </div>*@
+                    </div>
+                </div>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section css{
+    <link href="~/lib/node_modules/datatables.net-dt/css/jquery.dataTables.css" rel="stylesheet" />
+    <link href="~/lib/node_modules/js-datepicker/dist/datepicker.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+}
+@section Scripts{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/node_modules/datatables.net/js/jquery.dataTables.js"></script>
+    <script src="~/lib/node_modules/js-datepicker/dist/datepicker.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script src="~/js/leaveapp/leaveapp.js"></script>
+    
+
+}

@@ -1,0 +1,143 @@
+﻿
+@{
+    ViewData["Title"] = "Thống kê bộ phận";
+}
+
+<h1>Thống kê bộ phận</h1>
+
+<table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                <label>Năm</label>
+            </th>
+            <th>
+                <label>Tháng</label>
+            </th>
+            <th>
+                <label>Họ và tên</label>
+            </th>
+            <th>
+                <label>Có mặt</label>
+            </th>
+            <th>
+                <label>Trễ</label>
+            </th>
+            <th>
+                <label>Vắng không phép</label>
+            </th>
+            <th>
+                <label>Vắng có phép</label>
+            </th>
+            <th>
+                <label>Vắng không lương</label>
+            </th>
+            <th>
+                <label>Số phép còn lại</label>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="tblDepartmentStatistics">
+    </tbody>
+</table>
+
+<!-- The Modal TimeSheetList-->
+<div class="modal" id="TimeSheetList">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title"></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>
+                                <label>Ngày</label>
+                            </th>
+                            <th>
+                                <label>Trạng thái</label>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="tblTimeSheetList">
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- The Modal EmployeeStatistics-->
+<div class="modal" id="EmployeeStatistics">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title"></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>
+                                <label>Năm</label>
+                            </th>
+                            <th>
+                                <label>Tháng</label>
+                            </th>
+                            <th>
+                                <label>Có mặt</label>
+                            </th>
+                            <th>
+                                <label>Trễ</label>
+                            </th>
+                            <th>
+                                <label>Vắng không phép</label>
+                            </th>
+                            <th>
+                                <label>Vắng có phép</label>
+                            </th>
+                            <th>
+                                <label>Vắng không lương</label>
+                            </th>
+                            <th>
+                                <label>Số phép còn lại</label>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="tblEmployeeStatistics">
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/js/Manager/Statistics.js"></script>
+}

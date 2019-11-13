@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewData["Title"] = "Danh sách đơn xin phép";
+}
+
+<h1>Danh sách đơn xin phép</h1>
+
+<table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                <label>Họ và tên</label>
+            </th>
+            <th>
+                <label>Tình trạng</label>
+            </th>
+            <th>
+                <label>Ngày bắt đầu</label>
+            </th>
+            <th>
+                <label>Ngày kết thúc</label>
+            </th>
+            <th>
+                <label>Ngày gửi</label>
+            </th>
+            <th>
+                <label>Ngày phản hồi</label>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="tblDepartmentLeaveApplication">
+    </tbody>
+</table>
+
+<!-- The Modal EmployeeLeaveApplication-->
+<div class="modal" id="EmployeeLeaveApplication">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title"></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/js/Manager/LeaveApplication.js"></script>
+}

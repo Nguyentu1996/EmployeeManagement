@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewData["Title"] = "Statistic";
+}
+
+<h3>Statistic Employee</h3>
+
+<table id="tbStatistic" class="table table-hover table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
+</table>
+
+<div class="modal" id="TimeSheetList">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title"></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>
+                                <label>Ngày</label>
+                            </th>
+                            <th>
+                                <label>Trạng thái</label>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="tblTimeSheetList">
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section css{
+    <link href="~/lib/node_modules/datatables.net-dt/css/jquery.dataTables.css" rel="stylesheet" />
+    <link href="~/lib/node_modules/js-datepicker/dist/datepicker.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+}
+@section Scripts{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/node_modules/datatables.net/js/jquery.dataTables.js"></script>
+    <script src="~/lib/node_modules/js-datepicker/dist/datepicker.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="~/js/statistic/statistic.js"></script>
+}
